@@ -8,49 +8,30 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --cream:#fffdf7;
-  --warm:#fff8ed;
-  --pink:#ff8fab;
-  --pink2:#ff6b9d;
-  --teal:#00c9b1;
-  --teal2:#00a896;
-  --gold:#ffb703;
-  --gold2:#fb8500;
-  --coral:#ff6060;
-  --dark:#1a1a2e;
-  --mid:#3a3a5c;
-  --muted:#7a7a9a;
-  --discord:#5865f2;
+  --cream:#fffdf7;--pink:#ff8fab;--pink2:#ff6b9d;--teal:#00c9b1;--teal2:#00a896;
+  --gold:#ffb703;--gold2:#fb8500;--coral:#ff6060;--dark:#1a1a2e;--mid:#3a3a5c;
+  --muted:#7a7a9a;--discord:#5865f2;
 }
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
-
-/* ── STARS BG ── */
 #stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 #stars span{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:twinkle ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:0;transform:scale(0.5)}50%{opacity:0.35;transform:scale(1)}}
-
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:62px;background:rgba(255,253,247,0.92);backdrop-filter:blur(12px);border-bottom:1.5px solid rgba(255,143,171,0.25)}
-.nav-logo{font-family:'Abril Fatface',serif;font-size:1.5rem;color:var(--pink2);letter-spacing:1px}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:.35;transform:scale(1)}}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:62px;background:rgba(255,253,247,.92);backdrop-filter:blur(12px);border-bottom:1.5px solid rgba(255,143,171,.25)}
+.nav-logo{font-family:'Abril Fatface',serif;font-size:1.5rem;color:var(--pink2)}
 .nav-logo em{color:var(--teal);font-style:normal}
 .nav-right{display:flex;align-items:center;gap:10px}
-
-.btn-discord{display:inline-flex;align-items:center;gap:7px;background:var(--discord);color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.88rem;padding:8px 18px;border-radius:50px;text-decoration:none;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 12px rgba(88,101,242,.35)}
+.btn-discord{display:inline-flex;align-items:center;gap:7px;background:var(--discord);color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.88rem;padding:8px 18px;border-radius:50px;text-decoration:none;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 12px rgba(88,101,242,.35)}
 .btn-discord:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(88,101,242,.45)}
 .btn-discord svg{width:18px;height:18px}
-.btn-admin{background:var(--dark);color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.82rem;padding:8px 16px;border-radius:50px;border:none;cursor:pointer;letter-spacing:1.5px;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.btn-admin{background:var(--dark);color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.82rem;padding:8px 16px;border-radius:50px;border:none;cursor:pointer;letter-spacing:1.5px;transition:transform .15s;box-shadow:0 3px 12px rgba(0,0,0,.2)}
 .btn-admin:hover{transform:translateY(-2px)}
-
-/* ── HERO ── */
-.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;background:radial-gradient(ellipse at 50% 0%,rgba(255,143,171,0.15) 0%,transparent 60%)}
-.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--pink),var(--gold));color:#fff;font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:24px;box-shadow:0 4px 18px rgba(255,107,157,.35)}
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;background:radial-gradient(ellipse at 50% 0%,rgba(255,143,171,.15) 0%,transparent 60%)}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--pink),var(--gold));color:#fff;font-size:.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:24px;box-shadow:0 4px 18px rgba(255,107,157,.35)}
 .hero h1{font-family:'Abril Fatface',serif;font-size:clamp(3rem,10vw,6.5rem);line-height:1.05;margin-bottom:18px;background:linear-gradient(135deg,var(--pink2) 0%,var(--gold2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-size:1.1rem;color:var(--muted);max-width:440px;line-height:1.75;margin-bottom:52px}
-
-/* ── CTA BUTTONS ── */
 .cta-wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.cta{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.97rem;text-decoration:none;border:none;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.cta{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.97rem;text-decoration:none;border:none;cursor:pointer;transition:transform .18s,box-shadow .18s}
 .cta:hover{transform:translateY(-3px)}
 .cta-pink{background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;box-shadow:0 5px 20px rgba(255,107,157,.4)}
 .cta-pink:hover{box-shadow:0 9px 28px rgba(255,107,157,.5)}
@@ -58,88 +39,116 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .cta-teal:hover{box-shadow:0 9px 28px rgba(0,201,177,.5)}
 .cta-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;box-shadow:0 5px 20px rgba(255,183,3,.38)}
 .cta-gold:hover{box-shadow:0 9px 28px rgba(255,183,3,.5)}
-
-/* ── SCROLL HINT ── */
-.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:var(--pink);font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.6;animation:bounce 2s ease-in-out infinite}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:var(--pink);font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.6;animation:bounce 2s ease-in-out infinite}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
 .scroll-hint svg{width:20px;height:20px}
-
-/* ── SECTION ── */
 .section{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:90px 24px}
-.section-label{display:inline-block;font-size:0.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--pink2);margin-bottom:10px}
+.section-label{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--pink2);margin-bottom:10px}
 .section-title{font-family:'Abril Fatface',serif;font-size:clamp(2rem,5vw,3rem);color:var(--dark);margin-bottom:8px}
 .section-sub{color:var(--muted);font-size:1rem;margin-bottom:36px}
-
-/* ── LOG CARDS ── */
 #log-container{display:flex;flex-direction:column;gap:18px}
 .log-card{background:#fff;border-radius:20px;padding:26px 30px;box-shadow:0 2px 20px rgba(0,0,0,.06);border-left:5px solid var(--pink);position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s}
-.log-card::before{content:'';position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(ellipse at top right,rgba(255,143,171,.12),transparent 70%);pointer-events:none}
+.log-card::before{content:'';position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(ellipse at top right,rgba(255,143,171,.1),transparent 70%);pointer-events:none}
 .log-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.1);transform:translateY(-2px)}
-.log-card-topic{font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.log-card-topic{font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
 .log-card-title{font-family:'Abril Fatface',serif;font-size:1.3rem;color:var(--dark);margin-bottom:10px}
-.log-card-body{color:var(--mid);font-size:0.97rem;line-height:1.75}
+.log-card-body{color:var(--mid);font-size:.97rem;line-height:1.75}
 
-/* ── STAFF ── */
+/* Public files section */
+.files-section{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 24px 90px}
+.file-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.file-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 16px rgba(0,0,0,.06);display:flex;flex-direction:column;gap:10px;border:1.5px solid rgba(255,143,171,.15);transition:box-shadow .2s,transform .2s}
+.file-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.1);transform:translateY(-2px)}
+.file-icon{font-size:2rem}
+.file-msg{font-size:.92rem;color:var(--mid);line-height:1.5;flex:1}
+.file-name{font-size:.75rem;color:var(--muted);font-weight:500;word-break:break-all}
+.btn-dl{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;padding:8px 16px;border-radius:50px;font-size:.82rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:transform .15s;width:fit-content}
+.btn-dl:hover{transform:translateY(-1px)}
+
 .staff-section{position:relative;z-index:1;text-align:center;padding:90px 24px 110px;background:linear-gradient(160deg,rgba(0,201,177,.07) 0%,rgba(255,183,3,.07) 100%)}
-.staff-section .section-title{margin-bottom:16px}
 .staff-section p{color:var(--muted);font-size:1.05rem;max-width:500px;margin:0 auto;line-height:1.85}
 .flower-row{font-size:2.5rem;margin:28px 0 8px;letter-spacing:8px}
-
-/* ── WAVE ── */
 .wave{display:block;width:100%;line-height:0;position:relative;z-index:1}
+footer{position:relative;z-index:1;text-align:center;padding:24px;background:var(--dark);color:rgba(255,255,255,.35);font-size:.8rem}
 
-/* ── FOOTER ── */
-footer{position:relative;z-index:1;text-align:center;padding:24px;background:var(--dark);color:rgba(255,255,255,.35);font-size:0.8rem}
-
-/* ── MODAL OVERLAY ── */
+/* Modal / overlay */
 .overlay{display:none;position:fixed;inset:0;background:rgba(10,10,30,.55);backdrop-filter:blur(8px);z-index:500;align-items:center;justify-content:center}
 .overlay.open{display:flex}
-
-/* ── PASSCODE MODAL ── */
 .modal{background:#fff;border-radius:24px;padding:44px 38px 38px;max-width:400px;width:92%;text-align:center;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.18)}
 .modal-icon{font-size:2.5rem;margin-bottom:12px}
 .modal h2{font-family:'Abril Fatface',serif;font-size:1.8rem;color:var(--dark);margin-bottom:8px}
-.modal p{color:var(--muted);font-size:0.92rem;margin-bottom:24px}
+.modal p{color:var(--muted);font-size:.92rem;margin-bottom:24px}
 .modal input{width:100%;padding:14px 18px;border:2px solid #eee;border-radius:14px;font-size:1.4rem;letter-spacing:8px;text-align:center;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;color:var(--dark);margin-bottom:8px}
 .modal input:focus{border-color:var(--pink)}
 .modal input.err{border-color:var(--coral);animation:shake .35s}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
-.err-msg{color:var(--coral);font-size:0.85rem;min-height:20px;margin-bottom:16px}
+.err-msg{color:var(--coral);font-size:.85rem;min-height:20px;margin-bottom:16px}
 .btn-enter{width:100%;background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;padding:13px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 5px 18px rgba(255,107,157,.35);transition:transform .15s}
 .btn-enter:hover{transform:translateY(-2px)}
-.modal-x{position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted);line-height:1}
+.modal-x{position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted)}
 
-/* ── ADMIN PANEL ── */
+/* Admin panel */
 #admin{display:none;position:fixed;inset:0;z-index:400;background:#f7f5ff;overflow-y:auto}
 #admin.open{display:block}
 .admin-nav{background:var(--dark);color:#fff;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .admin-nav h2{font-family:'Abril Fatface',serif;font-size:1.3rem}
-.btn-close-admin{background:var(--coral);color:#fff;border:none;padding:8px 22px;border-radius:50px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.88rem}
-.admin-body{max-width:760px;margin:0 auto;padding:44px 24px 80px}
+.btn-close-admin{background:var(--coral);color:#fff;border:none;padding:8px 22px;border-radius:50px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem}
+
+/* Admin tabs */
+.admin-tabs{display:flex;gap:0;border-bottom:2px solid #e8e4f0;margin-bottom:32px}
+.admin-tab{padding:12px 28px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.92rem;border:none;background:none;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s}
+.admin-tab.active{color:var(--pink2);border-bottom-color:var(--pink2)}
+.admin-tab-content{display:none}
+.admin-tab-content.active{display:block}
+
+.admin-body{max-width:760px;margin:0 auto;padding:32px 24px 80px}
 .admin-section-title{font-family:'Abril Fatface',serif;font-size:1.4rem;color:var(--pink2);margin-bottom:20px}
-.form-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 3px 18px rgba(0,0,0,.07);margin-bottom:32px}
-.form-card label{display:block;font-size:0.8rem;font-weight:600;color:var(--muted);letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase}
-.form-card input[type=text],.form-card textarea,.form-card select{width:100%;border:2px solid #eee;border-radius:12px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:0.97rem;color:var(--dark);outline:none;margin-bottom:18px;resize:vertical;transition:border-color .2s}
-.form-card input:focus,.form-card textarea:focus,.form-card select:focus{border-color:var(--pink)}
+.form-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 3px 18px rgba(0,0,0,.07);margin-bottom:28px}
+.form-card label{display:block;font-size:.8rem;font-weight:600;color:var(--muted);letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase}
+.form-card input[type=text],.form-card textarea{width:100%;border:2px solid #eee;border-radius:12px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:.97rem;color:var(--dark);outline:none;margin-bottom:18px;resize:vertical;transition:border-color .2s}
+.form-card input[type=text]:focus,.form-card textarea:focus{border-color:var(--pink)}
 .fmt-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-.fmt-btn{padding:5px 13px;border-radius:8px;border:2px solid #eee;background:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;color:var(--muted);transition:all .15s}
+.fmt-btn{padding:5px 13px;border-radius:8px;border:2px solid #eee;background:#fff;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--muted);transition:all .15s}
 .fmt-btn:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
 .clr-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
-.clr-row span{font-size:0.78rem;font-weight:600;color:var(--muted)}
+.clr-row span.lbl{font-size:.78rem;font-weight:600;color:var(--muted)}
 .swatch{width:26px;height:26px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:transform .15s}
 .swatch:hover{transform:scale(1.2)}
 .swatch.on{border-color:var(--dark)}
-.color-preview{width:22px;height:22px;border-radius:50%;border:2px solid #eee;display:inline-block;vertical-align:middle;cursor:pointer}
 .btn-add{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;padding:12px 28px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(0,201,177,.35);transition:transform .15s}
 .btn-add:hover{transform:translateY(-2px)}
-.al-item{background:#fff;border-radius:14px;padding:16px 20px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.al-info .al-t{font-weight:600;color:var(--dark)}
-.al-info .al-topic{font-size:0.78rem;color:var(--teal);margin-top:2px}
-.btn-del{background:var(--coral);color:#fff;border:none;padding:6px 16px;border-radius:50px;font-weight:600;font-size:0.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .15s}
-.btn-del:hover{transform:scale(1.05)}
-.empty-msg{color:var(--muted);font-size:0.95rem;padding:12px 0}
+.al-item{background:#fff;border-radius:14px;padding:16px 20px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.05);gap:12px}
+.al-info{flex:1;min-width:0}
+.al-info .al-t{font-weight:600;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.al-info .al-sub{font-size:.78rem;color:var(--muted);margin-top:2px}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:50px;letter-spacing:.5px}
+.badge-pub{background:#e6f9f6;color:#00856f}
+.badge-priv{background:#ffeef5;color:#c2185b}
+.btn-del{background:var(--coral);color:#fff;border:none;padding:6px 16px;border-radius:50px;font-weight:600;font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;flex-shrink:0}
+.btn-del:hover{opacity:.85}
+.empty-msg{color:var(--muted);font-size:.95rem;padding:12px 0}
 
-@media(max-width:600px){nav{padding:0 16px}.hero{padding:100px 16px 60px}.section{padding:60px 16px}.admin-body{padding:32px 16px 60px}}
+/* File upload area */
+.upload-zone{border:2.5px dashed #e0d8f0;border-radius:16px;padding:32px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;margin-bottom:18px;position:relative}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--pink);background:rgba(255,143,171,.05)}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-zone-icon{font-size:2.2rem;margin-bottom:8px}
+.upload-zone p{color:var(--muted);font-size:.9rem}
+.upload-zone strong{color:var(--pink2)}
+.chosen-file{background:#f0faf8;border-radius:10px;padding:10px 14px;font-size:.88rem;color:var(--teal2);font-weight:600;margin-bottom:14px;display:none;word-break:break-all}
+
+/* Visibility toggle */
+.vis-toggle{display:flex;gap:10px;margin-bottom:18px}
+.vis-btn{flex:1;padding:10px;border-radius:12px;border:2px solid #eee;background:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .15s;color:var(--muted)}
+.vis-btn.sel-pub{border-color:var(--teal);background:#e6f9f6;color:#00856f}
+.vis-btn.sel-priv{border-color:var(--pink2);background:#ffeef5;color:#c2185b}
+
+/* Admin private file view */
+.priv-file-card{background:#fff;border-radius:14px;padding:18px 20px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,.05);border-left:4px solid var(--pink2)}
+.priv-file-card .pf-name{font-weight:600;color:var(--dark);font-size:.95rem;margin-bottom:4px;word-break:break-all}
+.priv-file-card .pf-msg{color:var(--mid);font-size:.88rem;margin-bottom:8px;line-height:1.5}
+
+@media(max-width:600px){nav{padding:0 16px}.hero{padding:100px 16px 60px}.section{padding:60px 16px}.admin-body{padding:24px 16px 60px}.admin-tab{padding:10px 16px;font-size:.82rem}}
 </style>
 </head>
 <body>
@@ -174,7 +183,6 @@ footer{position:relative;z-index:1;text-align:center;padding:24px;background:var
   </div>
 </section>
 
-<!-- WAVE -->
 <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M0,35 C480,70 960,0 1440,35 L1440,70 L0,70 Z" fill="#fff"/>
 </svg>
@@ -187,7 +195,14 @@ footer{position:relative;z-index:1;text-align:center;padding:24px;background:var
   <div id="log-container"></div>
 </div>
 
-<!-- WAVE -->
+<!-- PUBLIC FILES -->
+<div class="files-section" id="public-files-section" style="display:none">
+  <div class="section-label">📁 Files</div>
+  <h2 class="section-title" style="font-family:'Abril Fatface',serif;font-size:clamp(2rem,5vw,3rem);color:var(--dark);margin-bottom:8px">Downloads &amp; Resources</h2>
+  <p class="section-sub" style="color:var(--muted);font-size:1rem;margin-bottom:28px">Files shared by the Lumora team.</p>
+  <div class="file-grid" id="public-file-grid"></div>
+</div>
+
 <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="transform:scaleY(-1)">
   <path d="M0,35 C480,70 960,0 1440,35 L1440,70 L0,70 Z" fill="#fff"/>
 </svg>
@@ -195,12 +210,11 @@ footer{position:relative;z-index:1;text-align:center;padding:24px;background:var
 <!-- STAFF -->
 <div class="staff-section">
   <div class="section-label">💛 Our Team</div>
-  <h2 class="section-title">Who brought this to life!</h2>
+  <h2 class="section-title" style="font-family:'Abril Fatface',serif;font-size:clamp(2rem,5vw,3rem);color:var(--dark);margin-bottom:8px">Who brought this to life!</h2>
   <div class="flower-row">🌸🌺🌼🌻🌸</div>
   <p>Thank you to all of our staff for helping us be what we are! Every detail, every shift, every smile — it's all you.</p>
 </div>
 
-<!-- FOOTER -->
 <footer>© 2024 Lumora Café · Made with 🌺 on Roblox</footer>
 
 <!-- PASSCODE OVERLAY -->
@@ -209,7 +223,7 @@ footer{position:relative;z-index:1;text-align:center;padding:24px;background:var
     <button class="modal-x" onclick="closeModal()">✕</button>
     <div class="modal-icon">🔐</div>
     <h2>Admin Access</h2>
-    <p>Enter your passcode to manage Update Logs.</p>
+    <p>Enter your passcode to manage the site.</p>
     <input type="password" id="pc" maxlength="12" placeholder="••••••••" onkeydown="if(event.key==='Enter')check()" oninput="document.getElementById('err').textContent='';this.classList.remove('err')"/>
     <div class="err-msg" id="err"></div>
     <button class="btn-enter" onclick="check()">Enter Panel</button>
@@ -223,47 +237,83 @@ footer{position:relative;z-index:1;text-align:center;padding:24px;background:var
     <button class="btn-close-admin" onclick="closeAdmin()">✕ Exit</button>
   </div>
   <div class="admin-body">
-    <div class="admin-section-title">Add New Log Entry</div>
-    <div class="form-card">
-      <label>Title</label>
-      <input type="text" id="a-title" placeholder="e.g. New Seasonal Menu"/>
-      <label>Topic Tag</label>
-      <input type="text" id="a-topic" placeholder="e.g. 🌟 Launch · 🛠️ Fix · 🍹 Menu"/>
-      <label>Content</label>
-      <div class="fmt-bar">
-        <button class="fmt-btn" onclick="wrap('<b>','</b>')"><b>Bold</b></button>
-        <button class="fmt-btn" onclick="wrap('<i>','</i>')"><i>Italic</i></button>
-        <button class="fmt-btn" onclick="wrap('<u>','</u>')"><u>Underline</u></button>
-        <button class="fmt-btn" onclick="ins('🌺 ')">🌺</button>
-        <button class="fmt-btn" onclick="ins('🍹 ')">🍹</button>
-        <button class="fmt-btn" onclick="ins('✨ ')">✨</button>
-        <button class="fmt-btn" onclick="ins('🌴 ')">🌴</button>
-      </div>
-      <div class="clr-row">
-        <span>Text colour:</span>
-        <span class="swatch on" style="background:#1a1a2e" data-c="#1a1a2e" onclick="setC(this)"></span>
-        <span class="swatch" style="background:#ff6b9d" data-c="#ff6b9d" onclick="setC(this)"></span>
-        <span class="swatch" style="background:#00c9b1" data-c="#00c9b1" onclick="setC(this)"></span>
-        <span class="swatch" style="background:#ffb703" data-c="#ffb703" onclick="setC(this)"></span>
-        <span class="swatch" style="background:#ff6060" data-c="#ff6060" onclick="setC(this)"></span>
-        <span class="swatch" style="background:#5865f2" data-c="#5865f2" onclick="setC(this)"></span>
-        <span class="swatch" style="background:#3cb371" data-c="#3cb371" onclick="setC(this)"></span>
-      </div>
-      <label>Body Text</label>
-      <textarea id="a-body" rows="5" placeholder="Write your update here... Select text then click Bold/colour to format it."></textarea>
-      <label>Left Border Colour</label>
-      <div class="clr-row" style="margin-bottom:20px">
-        <span class="swatch on" style="background:#ff8fab" data-bc="#ff8fab" onclick="setBC(this)"></span>
-        <span class="swatch" style="background:#00c9b1" data-bc="#00c9b1" onclick="setBC(this)"></span>
-        <span class="swatch" style="background:#ffb703" data-bc="#ffb703" onclick="setBC(this)"></span>
-        <span class="swatch" style="background:#ff6060" data-bc="#ff6060" onclick="setBC(this)"></span>
-        <span class="swatch" style="background:#5865f2" data-bc="#5865f2" onclick="setBC(this)"></span>
-      </div>
-      <button class="btn-add" onclick="addLog()">➕ Add to Website</button>
+
+    <!-- Tabs -->
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchTab('logs',this)">📋 Update Logs</button>
+      <button class="admin-tab" onclick="switchTab('files',this)">📁 File Uploads</button>
     </div>
 
-    <div class="admin-section-title">Existing Entries</div>
-    <div id="admin-list"></div>
+    <!-- LOGS TAB -->
+    <div class="admin-tab-content active" id="tab-logs">
+      <div class="admin-section-title">Add New Log Entry</div>
+      <div class="form-card">
+        <label>Title</label>
+        <input type="text" id="a-title" placeholder="e.g. New Seasonal Menu"/>
+        <label>Topic Tag</label>
+        <input type="text" id="a-topic" placeholder="e.g. 🌟 Launch · 🛠️ Fix · 🍹 Menu"/>
+        <label>Content</label>
+        <div class="fmt-bar">
+          <button class="fmt-btn" onclick="wrap('<b>','</b>')"><b>Bold</b></button>
+          <button class="fmt-btn" onclick="wrap('<i>','</i>')"><i>Italic</i></button>
+          <button class="fmt-btn" onclick="wrap('<u>','</u>')"><u>Underline</u></button>
+          <button class="fmt-btn" onclick="ins('🌺 ')">🌺</button>
+          <button class="fmt-btn" onclick="ins('🍹 ')">🍹</button>
+          <button class="fmt-btn" onclick="ins('✨ ')">✨</button>
+          <button class="fmt-btn" onclick="ins('🌴 ')">🌴</button>
+        </div>
+        <div class="clr-row">
+          <span class="lbl">Text colour:</span>
+          <span class="swatch on" style="background:#1a1a2e" data-c="#1a1a2e" onclick="setC(this)"></span>
+          <span class="swatch" style="background:#ff6b9d" data-c="#ff6b9d" onclick="setC(this)"></span>
+          <span class="swatch" style="background:#00c9b1" data-c="#00c9b1" onclick="setC(this)"></span>
+          <span class="swatch" style="background:#ffb703" data-c="#ffb703" onclick="setC(this)"></span>
+          <span class="swatch" style="background:#ff6060" data-c="#ff6060" onclick="setC(this)"></span>
+          <span class="swatch" style="background:#5865f2" data-c="#5865f2" onclick="setC(this)"></span>
+          <span class="swatch" style="background:#3cb371" data-c="#3cb371" onclick="setC(this)"></span>
+        </div>
+        <label>Body Text</label>
+        <textarea id="a-body" rows="5" placeholder="Write your update here..."></textarea>
+        <label>Left Border Colour</label>
+        <div class="clr-row" id="bc-row" style="margin-bottom:20px">
+          <span class="swatch on" style="background:#ff8fab" data-bc="#ff8fab" onclick="setBC(this)"></span>
+          <span class="swatch" style="background:#00c9b1" data-bc="#00c9b1" onclick="setBC(this)"></span>
+          <span class="swatch" style="background:#ffb703" data-bc="#ffb703" onclick="setBC(this)"></span>
+          <span class="swatch" style="background:#ff6060" data-bc="#ff6060" onclick="setBC(this)"></span>
+          <span class="swatch" style="background:#5865f2" data-bc="#5865f2" onclick="setBC(this)"></span>
+        </div>
+        <button class="btn-add" onclick="addLog()">➕ Add to Website</button>
+      </div>
+      <div class="admin-section-title">Existing Entries</div>
+      <div id="admin-list"></div>
+    </div>
+
+    <!-- FILES TAB -->
+    <div class="admin-tab-content" id="tab-files">
+      <div class="admin-section-title">Upload a File</div>
+      <div class="form-card">
+        <label>Choose File</label>
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" id="file-input" onchange="onFileChosen(this)"/>
+          <div class="upload-zone-icon">📂</div>
+          <p><strong>Click to browse</strong> or drag &amp; drop a file here</p>
+          <p style="font-size:.78rem;margin-top:6px">Any file type accepted</p>
+        </div>
+        <div class="chosen-file" id="chosen-file-name"></div>
+        <label>Message / Description</label>
+        <textarea id="f-msg" rows="3" placeholder="Describe what this file is, e.g. 'Staff schedule for June 2024'"></textarea>
+        <label>Visibility</label>
+        <div class="vis-toggle">
+          <button class="vis-btn sel-pub" id="vis-pub" onclick="setVis('public')">🌍 Public — anyone can see &amp; download</button>
+          <button class="vis-btn" id="vis-priv" onclick="setVis('private')">🔒 Private — admin only</button>
+        </div>
+        <button class="btn-add" onclick="uploadFile()">📤 Upload File</button>
+      </div>
+
+      <div class="admin-section-title">All Uploaded Files</div>
+      <div id="admin-files-list"></div>
+    </div>
+
   </div>
 </div>
 
@@ -272,63 +322,106 @@ footer{position:relative;z-index:1;text-align:center;padding:24px;background:var
 (function(){
   const s=document.getElementById('stars');
   for(let i=0;i<30;i++){
-    const el=document.createElement('span');
-    const sz=2+Math.random()*4;
+    const el=document.createElement('span');const sz=2+Math.random()*4;
     el.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-duration:${2+Math.random()*4}s;animation-delay:${Math.random()*5}s`;
     s.appendChild(el);
   }
 })();
 
-// ── Storage key ──
-const KEY='lumora_logs_v1';
-const DEFAULTS=[
+// ── Keys ──
+const LOGS_KEY='lumora_logs_v1';
+const FILES_KEY='lumora_files_v1';
+const LOG_DEFAULTS=[
   {title:'Grand Opening!',topic:'🌟 Launch',body:'Lumora Café has officially <b>opened its doors</b>! Welcome to our tropical corner of Roblox — we\'re so happy you\'re here.',border:'#ff8fab'},
   {title:'Bug Fixes & Polish',topic:'🛠️ Fix',body:'Resolved issues with the ordering system and improved overall performance. <span style="color:#00c9b1;font-weight:600">More exciting updates coming very soon!</span>',border:'#00c9b1'}
 ];
 
-function loadLogs(){
-  try{return JSON.parse(localStorage.getItem(KEY))||DEFAULTS}catch(e){return DEFAULTS}
-}
-function saveLogs(arr){localStorage.setItem(KEY,JSON.stringify(arr))}
+// ── Logs storage ──
+function loadLogs(){try{return JSON.parse(localStorage.getItem(LOGS_KEY))||LOG_DEFAULTS}catch(e){return LOG_DEFAULTS}}
+function saveLogs(a){localStorage.setItem(LOGS_KEY,JSON.stringify(a))}
 
+// ── Files storage (base64 in localStorage) ──
+function loadFiles(){try{return JSON.parse(localStorage.getItem(FILES_KEY))||[]}catch(e){return[]}}
+function saveFiles(a){
+  try{localStorage.setItem(FILES_KEY,JSON.stringify(a));return true}
+  catch(e){alert('Storage full! Try deleting some files first or use smaller files.');return false}
+}
+
+// ── Render site logs ──
 function renderSite(){
   const logs=loadLogs();
   const c=document.getElementById('log-container');
-  if(!logs.length){c.innerHTML='<p style="color:var(--muted);font-size:0.95rem">No updates yet — check back soon!</p>';return}
-  c.innerHTML=logs.map(l=>`
-    <div class="log-card" style="border-left-color:${l.border||'#ff8fab'}">
-      <div class="log-card-topic">${l.topic||''}</div>
-      <div class="log-card-title">${l.title}</div>
-      <div class="log-card-body">${l.body}</div>
+  c.innerHTML=logs.length
+    ?logs.map(l=>`<div class="log-card" style="border-left-color:${l.border||'#ff8fab'}">
+        <div class="log-card-topic">${l.topic||''}</div>
+        <div class="log-card-title">${l.title}</div>
+        <div class="log-card-body">${l.body}</div></div>`).join('')
+    :'<p style="color:var(--muted);font-size:.95rem">No updates yet — check back soon!</p>';
+}
+
+// ── Render public files on main site ──
+function renderPublicFiles(){
+  const files=loadFiles().filter(f=>f.vis==='public');
+  const sec=document.getElementById('public-files-section');
+  const grid=document.getElementById('public-file-grid');
+  if(!files.length){sec.style.display='none';return}
+  sec.style.display='block';
+  grid.innerHTML=files.map((f,i)=>`
+    <div class="file-card">
+      <div class="file-icon">${fileEmoji(f.name)}</div>
+      <div class="file-msg">${escHtml(f.msg)}</div>
+      <div class="file-name">📎 ${escHtml(f.name)}</div>
+      <a class="btn-dl" href="${f.data}" download="${f.name}">⬇ Download</a>
     </div>`).join('');
 }
 
-function renderAdmin(){
+// ── Render admin log list ──
+function renderAdminLogs(){
   const logs=loadLogs();
   const c=document.getElementById('admin-list');
-  if(!logs.length){c.innerHTML='<p class="empty-msg">No entries yet.</p>';return}
-  c.innerHTML=logs.map((l,i)=>`
-    <div class="al-item">
+  c.innerHTML=logs.length
+    ?logs.map((l,i)=>`<div class="al-item">
+        <div class="al-info"><div class="al-t">${escHtml(l.title)}</div><div class="al-sub">${escHtml(l.topic)}</div></div>
+        <button class="btn-del" onclick="delLog(${i})">Delete</button></div>`).join('')
+    :'<p class="empty-msg">No log entries yet.</p>';
+}
+
+// ── Render admin files list ──
+function renderAdminFiles(){
+  const files=loadFiles();
+  const c=document.getElementById('admin-files-list');
+  if(!files.length){c.innerHTML='<p class="empty-msg">No files uploaded yet.</p>';return}
+  c.innerHTML=files.map((f,i)=>`
+    <div class="al-item" style="${f.vis==='private'?'border-left:4px solid var(--pink2)':'border-left:4px solid var(--teal)'}">
       <div class="al-info">
-        <div class="al-t">${l.title}</div>
-        <div class="al-topic">${l.topic}</div>
+        <div class="al-t">${fileEmoji(f.name)} ${escHtml(f.name)}</div>
+        <div class="al-sub" style="margin-top:4px">${escHtml(f.msg)}</div>
+        <div style="margin-top:6px">
+          <span class="badge ${f.vis==='public'?'badge-pub':'badge-priv'}">${f.vis==='public'?'🌍 Public':'🔒 Private'}</span>
+        </div>
       </div>
-      <button class="btn-del" onclick="del(${i})">Delete</button>
+      <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+        <a class="btn-dl" href="${f.data}" download="${f.name}" style="font-size:.78rem;padding:6px 14px">⬇ Download</a>
+        <button class="btn-del" onclick="delFile(${i})">Delete</button>
+      </div>
     </div>`).join('');
 }
 
-function del(i){
-  const logs=loadLogs();
-  logs.splice(i,1);
-  saveLogs(logs);
-  renderSite();
-  renderAdmin();
+function delLog(i){const l=loadLogs();l.splice(i,1);saveLogs(l);renderSite();renderAdminLogs()}
+function delFile(i){const f=loadFiles();f.splice(i,1);saveFiles(f);renderPublicFiles();renderAdminFiles()}
+
+// ── Helpers ──
+function escHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function fileEmoji(name){
+  const ext=(name||'').split('.').pop().toLowerCase();
+  const map={pdf:'📄',doc:'📝',docx:'📝',xls:'📊',xlsx:'📊',ppt:'📽️',pptx:'📽️',png:'🖼️',jpg:'🖼️',jpeg:'🖼️',gif:'🖼️',mp4:'🎬',mov:'🎬',mp3:'🎵',wav:'🎵',zip:'🗜️',rar:'🗜️',txt:'📋'};
+  return map[ext]||'📁';
 }
 
-// ── Format helpers ──
+// ── Log format helpers ──
 let chosenC='#1a1a2e',chosenBC='#ff8fab';
-function setC(el){document.querySelectorAll('.clr-row:first-of-type .swatch').forEach(s=>s.classList.remove('on'));el.classList.add('on');chosenC=el.dataset.c}
-function setBC(el){document.querySelectorAll('.clr-row:last-of-type .swatch').forEach(s=>s.classList.remove('on'));el.classList.add('on');chosenBC=el.dataset.bc}
+function setC(el){document.querySelectorAll('#tab-logs .clr-row:first-of-type .swatch').forEach(s=>s.classList.remove('on'));el.classList.add('on');chosenC=el.dataset.c}
+function setBC(el){document.querySelectorAll('#bc-row .swatch').forEach(s=>s.classList.remove('on'));el.classList.add('on');chosenBC=el.dataset.bc}
 function wrap(b,a){
   const ta=document.getElementById('a-body');
   const s=ta.selectionStart,e=ta.selectionEnd,sel=ta.value.substring(s,e);
@@ -345,12 +438,66 @@ function addLog(){
   body=body.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');
   const logs=loadLogs();
   logs.unshift({title,topic:topic||'📋 Update',body,border:chosenBC});
-  saveLogs(logs);
-  renderSite();
-  renderAdmin();
-  document.getElementById('a-title').value='';
-  document.getElementById('a-topic').value='';
-  document.getElementById('a-body').value='';
+  saveLogs(logs);renderSite();renderAdminLogs();
+  document.getElementById('a-title').value='';document.getElementById('a-topic').value='';document.getElementById('a-body').value='';
+}
+
+// ── File upload ──
+let chosenVis='public';
+let pendingFile=null;
+
+function setVis(v){
+  chosenVis=v;
+  document.getElementById('vis-pub').className='vis-btn'+(v==='public'?' sel-pub':'');
+  document.getElementById('vis-priv').className='vis-btn'+(v==='private'?' sel-priv':'');
+}
+
+function onFileChosen(inp){
+  const f=inp.files[0];if(!f)return;
+  pendingFile=f;
+  const el=document.getElementById('chosen-file-name');
+  el.style.display='block';el.textContent='✅ '+f.name+' ('+formatSize(f.size)+')';
+}
+
+function formatSize(bytes){
+  if(bytes<1024)return bytes+'B';
+  if(bytes<1048576)return(bytes/1024).toFixed(1)+'KB';
+  return(bytes/1048576).toFixed(1)+'MB';
+}
+
+function uploadFile(){
+  if(!pendingFile){alert('Please choose a file first.');return}
+  const msg=document.getElementById('f-msg').value.trim();
+  if(!msg){alert('Please add a description for the file.');return}
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const files=loadFiles();
+    files.unshift({name:pendingFile.name,msg,vis:chosenVis,data:e.target.result,size:formatSize(pendingFile.size),uploaded:new Date().toLocaleDateString()});
+    if(saveFiles(files)){
+      renderPublicFiles();renderAdminFiles();
+      document.getElementById('f-msg').value='';
+      document.getElementById('chosen-file-name').style.display='none';
+      document.getElementById('file-input').value='';
+      pendingFile=null;
+    }
+  };
+  reader.readAsDataURL(pendingFile);
+}
+
+// Drag and drop styling
+const uz=document.getElementById('upload-zone');
+uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('drag')});
+uz.addEventListener('dragleave',()=>uz.classList.remove('drag'));
+uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('drag');if(e.dataTransfer.files[0]){document.getElementById('file-input').files=e.dataTransfer.files;onFileChosen(document.getElementById('file-input'))}});
+
+// ── Tabs ──
+function switchTab(name,btn){
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-content').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+  if(name==='files')renderAdminFiles();
+  if(name==='logs')renderAdminLogs();
 }
 
 // ── Modal ──
@@ -362,12 +509,12 @@ function check(){
 }
 document.getElementById('overlay').addEventListener('click',function(e){if(e.target===this)closeModal()})
 
-// ── Admin panel ──
-function openAdmin(){document.getElementById('admin').classList.add('open');renderAdmin()}
+// ── Admin ──
+function openAdmin(){document.getElementById('admin').classList.add('open');renderAdminLogs()}
 function closeAdmin(){document.getElementById('admin').classList.remove('open')}
 
 // ── Init ──
-renderSite();
+renderSite();renderPublicFiles();
 </script>
 </body>
 </html>
