@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lumora Café</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sand: #fdf6ec;
+      --coral: #ff6b6b;
+      --teal: #00b4a2;
+      --teal-dark: #009688;
+      --gold: #f4a830;
+      --leaf: #3cb371;
+      --leaf-dark: #2e8b57;
+      --discord: #5865F2;
+      --text-dark: #1a2e2a;
+      --text-mid: #3d5c52;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--sand);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── FLOATING LEAVES ─── */
+    .leaf-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .leaf-bg span {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.12;
+      animation: floatLeaf linear infinite;
+    }
+    @keyframes floatLeaf {
+      0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 0.12; }
+      90%  { opacity: 0.12; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+      background: rgba(253,246,236,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(0,180,162,0.18);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--teal);
+      letter-spacing: 0.5px;
+    }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+
+    .btn-discord {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--discord);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 9px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(88,101,242,0.35);
+    }
+    .btn-discord:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(88,101,242,0.45); }
+    .btn-discord svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .btn-admin {
+      background: var(--text-dark);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 9px 18px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    }
+    .btn-admin:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.28); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(0,180,162,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(244,168,48,0.18) 0%, transparent 55%),
+        linear-gradient(160deg, #e8f7f5 0%, #fdf6ec 60%, #fff8ee 100%);
+      z-index: 1;
+    }
+
+    .hero-emoji { font-size: 4.5rem; margin-bottom: 20px; animation: bobble 3s ease-in-out infinite; }
+    @keyframes bobble { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      color: var(--teal);
+      line-height: 1.1;
+      text-shadow: 0 4px 24px rgba(0,180,162,0.15);
+      margin-bottom: 14px;
+    }
+    .hero h1 span { color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .hero-divider {
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      border-radius: 99px;
+      margin: 0 auto 48px;
+    }
+
+    /* ─── CTA BUTTONS ─── */
+    .cta-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .cta-btn:hover { transform: translateY(-3px); }
+
+    .cta-game {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(0,180,162,0.4);
+    }
+    .cta-game:hover { box-shadow: 0 10px 32px rgba(0,180,162,0.5); }
+
+    .cta-group {
+      background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(60,179,113,0.38);
+    }
+    .cta-group:hover { box-shadow: 0 10px 32px rgba(60,179,113,0.48); }
+
+    .cta-sneak {
+      background: linear-gradient(135deg, var(--coral), #ff4757);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(255,107,107,0.4);
+    }
+    .cta-sneak:hover { box-shadow: 0 10px 32px rgba(255,107,107,0.5); }
+
+    /* ─── SCROLL HINT ─── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      opacity: 0.7;
+      animation: fadeUpDown 2s ease-in-out infinite;
+    }
+    @keyframes fadeUpDown { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+    .scroll-hint svg { width: 20px; height: 20px; }
+
+    /* ─── UPDATE LOGS SECTION ─── */
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-label {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--teal), var(--gold));
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      color: var(--text-mid);
+      font-size: 1rem;
+      margin-bottom: 36px;
+    }
+
+    /* Update log cards */
+    #log-container { display: flex; flex-direction: column; gap: 18px; }
+
+    .log-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 24px 28px;
+      box-shadow: 0 4px 22px rgba(0,0,0,0.07);
+      border-left: 5px solid var(--teal);
+      transition: box-shadow 0.2s;
+    }
+    .log-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.11); }
+    .log-card .log-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .log-card .log-topic {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .log-card .log-body { color: var(--text-mid); font-size: 0.97rem; line-height: 1.7; }
+    .log-card .log-body b  { color: var(--text-dark); }
+    .log-card .log-body .highlight { color: var(--coral); font-weight: 700; }
+    .log-card .log-body .green     { color: var(--leaf-dark); font-weight: 700; }
+
+    /* ─── STAFF SECTION ─── */
+    .staff-section {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 80px 24px 100px;
+      background: linear-gradient(160deg, #e6f7f5 0%, #fff8ee 100%);
+    }
+    .staff-section .section-title { margin-bottom: 14px; }
+    .staff-section p { color: var(--text-mid); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.8; }
+    .staff-emoji-row { font-size: 2.8rem; margin: 28px 0 10px; letter-spacing: 6px; }
+
+    /* ─── WAVE DIVIDER ─── */
+    .wave { display: block; width: 100%; line-height: 0; }
+
+    /* ─── ADMIN MODAL ─── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,30,26,0.55);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: #fff;
+      border-radius: 24px;
+      padding: 40px 36px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+      text-align: center;
+      position: relative;
+    }
+    .modal h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .modal p { color: var(--text-mid); font-size: 0.95rem; margin-bottom: 24px; }
+
+    .passcode-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .passcode-row input {
+      width: 100%;
+      padding: 13px 18px;
+      border: 2px solid #e0eeeb;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      letter-spacing: 6px;
+      text-align: center;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      color: var(--text-dark);
+    }
+    .passcode-row input:focus { border-color: var(--teal); }
+    .passcode-row input.error { border-color: var(--coral); animation: shake 0.35s; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+    #passcode-error { color: var(--coral); font-size: 0.88rem; min-height: 20px; margin-bottom: 16px; }
+
+    .btn-enter {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 12px 32px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 16px rgba(0,180,162,0.35);
+    }
+    .btn-enter:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,180,162,0.45); }
+
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-mid);
+      line-height: 1;
+    }
+
+    /* ─── ADMIN PANEL ─── */
+    #admin-panel {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: #f4faf9;
+      overflow-y: auto;
+    }
+    #admin-panel.open { display: block; }
+
+    .admin-header {
+      background: var(--text-dark);
+      color: #fff;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .admin-header h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+    .btn-close-admin {
+      background: var(--coral);
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .admin-body { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
+    .admin-body h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 20px; color: var(--teal); }
+
+    .log-form {
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      margin-bottom: 32px;
+    }
+    .log-form label { display: block; font-weight: 700; font-size: 0.88rem; color: var(--text-mid); margin-bottom: 6px; letter-spacing: 0.5px; }
+    .log-form input[type="text"],
+    .log-form textarea,
+    .log-form select {
+      width: 100%;
+      border: 2px solid #e0eeeb;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.97rem;
+      color: var(--text-dark);
+      outline: none;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .log-form input:focus,
+    .log-form textarea:focus,
+    .log-form select:focus { border-color: var(--teal); }
+
+    .format-bar {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 10px;
+    }
+    .fmt-btn {
+      padding: 5px 13px;
+      border-radius: 8px;
+      border: 2px solid #e0eeeb;
+      background: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-mid);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .fmt-btn:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+    .color-picker-row { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .color-swatch {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .color-swatch:hover { transform: scale(1.2); }
+    .color-swatch.active { border-color: var(--text-dark); }
+
+    .btn-add-log {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 12px 28px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,180,162,0.35);
+      transition: transform 0.15s;
+    }
+    .btn-add-log:hover { transform: translateY(-2px); }
+
+    .existing-logs-admin { margin-top: 32px; }
+    .existing-logs-admin h3 { margin-bottom: 16px; }
+    .admin-log-item {
+      background: #fff;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .admin-log-item .al-title { font-weight: 700; color: var(--text-dark); }
+    .admin-log-item .al-topic { font-size: 0.8rem; color: var(--teal); }
+    .btn-del {
+      background: var(--coral);
+      color: #fff;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 24px;
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.45);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 12px 16px; }
+      .hero { padding: 100px 16px 60px; }
+      .section { padding: 60px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating leaf background -->
+<div class="leaf-bg" id="leafBg"></div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-left">
+    <span class="nav-logo">🌺 Lumora</span>
+  </div>
+  <div class="nav-right">
+    <a href="https://discord.gg/VGmUsNECz7" target="_blank" class="btn-discord">
+      <!-- Discord SVG logo -->
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.032.054a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+      </svg>
+      Discord
+    </a>
+    <button class="btn-admin" onclick="openAdminModal()">ADMIN</button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-emoji">🌴</div>
+  <h1>Welcome To <span>Lumora</span></h1>
+  <p class="hero-sub">A tropical escape awaits — sip, relax, and enjoy the vibe of Lumora Café on Roblox.</p>
+  <div class="hero-divider"></div>
+
+  <div class="cta-grid">
+    <a href="https://www.roblox.com/games/107562026611243/Lumora-Cafe" target="_blank" class="cta-btn cta-game">
+      🎮 Official Lumora Game
+    </a>
+    <a href="https://www.roblox.com/communities/804007244/scoff#!/about" target="_blank" class="cta-btn cta-group">
+      👥 Official Roblox Group
+    </a>
+    <a href="https://x.com/LumoraOnRoblox" target="_blank" class="cta-btn cta-sneak">
+      ✨ Sneak Peeks
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    SCROLL
+  </div>
+</section>
+
+<!-- Wave -->
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#fff"/>
+</svg>
+
+<!-- ─── UPDATE LOGS ─── -->
+<div class="section">
+  <span class="section-label">📋 Changelog</span>
+  <h2 class="section-title">Update Logs</h2>
+  <p class="section-sub">Stay in the loop with all things Lumora.</p>
+  <div id="log-container">
+    <!-- Default logs -->
+    <div class="log-card">
+      <div class="log-topic">🌟 Launch</div>
+      <div class="log-title">Grand Opening!</div>
+      <div class="log-body">Lumora Café has officially <b>opened its doors</b>! <span class="green">Welcome to the tropics.</span> Explore the café, hang out with friends, and enjoy the vibes.</div>
+    </div>
+    <div class="log-card">
+      <div class="log-topic">🛠️ Update</div>
+      <div class="log-title">Bug Fixes & Improvements</div>
+      <div class="log-body">Squashed several bugs affecting the <b>order system</b>. Performance improvements across all devices. <span class="highlight">More updates coming soon!</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Wave -->
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="transform:scaleY(-1)">
+  <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#fff"/>
+</svg>
+
+<!-- ─── STAFF SECTION ─── -->
+<div class="staff-section">
+  <span class="section-label">💛 Our Team</span>
+  <h2 class="section-title">Who brought this to life!</h2>
+  <div class="staff-emoji-row">🌺🌴☀️🍹🌊</div>
+  <p>Thank you to all of our staff for helping us be what we are! Every cup served, every detail crafted — it's all because of you.</p>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  © 2024 Lumora Café · Roblox · Made with 🌺 and lots of iced tea
+</footer>
+
+<!-- ─── ADMIN MODAL ─── -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAdminModal()">✕</button>
+    <div style="font-size:2.2rem;margin-bottom:10px">🔐</div>
+    <h2>Admin Access</h2>
+    <p>Enter your passcode to continue.</p>
+    <div class="passcode-row">
+      <input type="password" id="passcodeInput" placeholder="••••••••••" maxlength="12" oninput="clearError()" onkeydown="if(event.key==='Enter')checkPasscode()"/>
+    </div>
+    <div id="passcode-error"></div>
+    <button class="btn-enter" onclick="checkPasscode()">Enter</button>
+  </div>
+</div>
+
+<!-- ─── ADMIN PANEL ─── -->
+<div id="admin-panel">
+  <div class="admin-header">
+    <h2>🛠️ Lumora Admin — Update Logs</h2>
+    <button class="btn-close-admin" onclick="closeAdminPanel()">✕ Close</button>
+  </div>
+  <div class="admin-body">
+    <h3>Add a New Log Entry</h3>
+    <div class="log-form">
+      <label>Title</label>
+      <input type="text" id="a-title" placeholder="e.g. New Menu Items Added"/>
+
+      <label>Topic / Tag</label>
+      <input type="text" id="a-topic" placeholder="e.g. 🍃 Update  |  🌟 Launch  |  🛠️ Fix"/>
+
+      <label>Content</label>
+      <div class="format-bar">
+        <button class="fmt-btn" onclick="wrapText('**','**')" title="Bold"><b>B</b></button>
+        <button class="fmt-btn" onclick="wrapText('<i>','</i>')" title="Italic"><i>I</i></button>
+        <button class="fmt-btn" onclick="wrapText('<u>','</u>')" title="Underline"><u>U</u></button>
+        <button class="fmt-btn" onclick="insertText('✨ ')" title="Sparkle">✨</button>
+        <button class="fmt-btn" onclick="insertText('🍹 ')" title="Drink">🍹</button>
+        <button class="fmt-btn" onclick="insertText('🌴 ')" title="Palm">🌴</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+        <span style="font-size:0.82rem;font-weight:700;color:var(--text-mid)">Text Color:</span>
+        <span class="color-swatch active" style="background:#1a2e2a" data-color="#1a2e2a" onclick="setColor(this)"></span>
+        <span class="color-swatch" style="background:#00b4a2" data-color="#00b4a2" onclick="setColor(this)"></span>
+        <span class="color-swatch" style="background:#ff6b6b" data-color="#ff6b6b" onclick="setColor(this)"></span>
+        <span class="color-swatch" style="background:#f4a830" data-color="#f4a830" onclick="setColor(this)"></span>
+        <span class="color-swatch" style="background:#3cb371" data-color="#3cb371" onclick="setColor(this)"></span>
+        <span class="color-swatch" style="background:#5865F2" data-color="#5865F2" onclick="setColor(this)"></span>
+      </div>
+      <textarea id="a-body" rows="5" placeholder="Write your update here..."></textarea>
+
+      <button class="btn-add-log" onclick="addLog()">➕ Add Log Entry</button>
+    </div>
+
+    <div class="existing-logs-admin">
+      <h3>Existing Entries</h3>
+      <div id="admin-log-list"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── Floating leaves ── */
+  const leafEmojis = ['🌿','🌴','🌺','🍃','🌸','🌊','🦜','🍹'];
+  const bg = document.getElementById('leafBg');
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('span');
+    s.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.animationDuration = (12 + Math.random() * 18) + 's';
+    s.style.animationDelay = (Math.random() * 20) + 's';
+    s.style.fontSize = (1.2 + Math.random() * 1.8) + 'rem';
+    bg.appendChild(s);
+  }
+
+  /* ── Log storage ── */
+  let logs = [
+    { title: 'Grand Opening!', topic: '🌟 Launch', body: 'Lumora Café has officially <b>opened its doors</b>! <span class="green">Welcome to the tropics.</span> Explore the café, hang out with friends, and enjoy the vibes.' },
+    { title: 'Bug Fixes & Improvements', topic: '🛠️ Update', body: 'Squashed several bugs affecting the <b>order system</b>. Performance improvements across all devices. <span class="highlight">More updates coming soon!</span>' }
+  ];
+
+  function renderLogs() {
+    const c = document.getElementById('log-container');
+    c.innerHTML = logs.map((l, i) => `
+      <div class="log-card" id="lc-${i}">
+        <div class="log-topic">${l.topic}</div>
+        <div class="log-title">${l.title}</div>
+        <div class="log-body">${l.body}</div>
+      </div>`).join('');
+  }
+
+  function renderAdminList() {
+    const c = document.getElementById('admin-log-list');
+    c.innerHTML = logs.length === 0
+      ? '<p style="color:var(--text-mid)">No logs yet.</p>'
+      : logs.map((l, i) => `
+        <div class="admin-log-item">
+          <div>
+            <div class="al-title">${l.title}</div>
+            <div class="al-topic">${l.topic}</div>
+          </div>
+          <button class="btn-del" onclick="deleteLog(${i})">Delete</button>
+        </div>`).join('');
+  }
+
+  function deleteLog(i) {
+    logs.splice(i, 1);
+    renderLogs();
+    renderAdminList();
+  }
+
+  /* ── Admin modal ── */
+  function openAdminModal() {
+    document.getElementById('adminModal').classList.add('open');
+    document.getElementById('passcodeInput').value = '';
+    document.getElementById('passcode-error').textContent = '';
+    setTimeout(() => document.getElementById('passcodeInput').focus(), 100);
+  }
+  function closeAdminModal() {
+    document.getElementById('adminModal').classList.remove('open');
+  }
+  function clearError() {
+    document.getElementById('passcode-error').textContent = '';
+    document.getElementById('passcodeInput').classList.remove('error');
+  }
+  function checkPasscode() {
+    const val = document.getElementById('passcodeInput').value;
+    if (val === 'Lumora26DV') {
+      closeAdminModal();
+      openAdminPanel();
+    } else {
+      document.getElementById('passcode-error').textContent = 'Incorrect passcode. Try again.';
+      const inp = document.getElementById('passcodeInput');
+      inp.classList.add('error');
+      setTimeout(() => inp.classList.remove('error'), 400);
+    }
+  }
+
+  /* ── Admin panel ── */
+  function openAdminPanel() {
+    document.getElementById('admin-panel').classList.add('open');
+    renderAdminList();
+  }
+  function closeAdminPanel() {
+    document.getElementById('admin-panel').classList.remove('open');
+  }
+
+  /* ── Format helpers ── */
+  let chosenColor = '#1a2e2a';
+  function setColor(el) {
+    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    chosenColor = el.dataset.color;
+  }
+  function wrapText(before, after) {
+    const ta = document.getElementById('a-body');
+    const start = ta.selectionStart, end = ta.selectionEnd;
+    const sel = ta.value.substring(start, end);
+    const colored = chosenColor !== '#1a2e2a'
+      ? `<span style="color:${chosenColor}">${before}${sel}${after}</span>`
+      : `${before}${sel}${after}`;
+    ta.value = ta.value.substring(0, start) + colored + ta.value.substring(end);
+  }
+  function insertText(txt) {
+    const ta = document.getElementById('a-body');
+    const pos = ta.selectionStart;
+    ta.value = ta.value.substring(0, pos) + txt + ta.value.substring(pos);
+  }
+
+  /* ── Add log ── */
+  function addLog() {
+    const title = document.getElementById('a-title').value.trim();
+    const topic = document.getElementById('a-topic').value.trim();
+    let body  = document.getElementById('a-body').value.trim();
+    if (!title || !body) { alert('Please fill in at least a Title and Content.'); return; }
+    // convert **text** → <b>text</b>
+    body = body.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+    logs.unshift({ title, topic: topic || '📋 Update', body });
+    renderLogs();
+    renderAdminList();
+    document.getElementById('a-title').value = '';
+    document.getElementById('a-topic').value = '';
+    document.getElementById('a-body').value = '';
+  }
+
+  /* Close modal on overlay click */
+  document.getElementById('adminModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAdminModal();
+  });
+
+  /* Initial render */
+  renderLogs();
+</script>
+</body>
+</html>
